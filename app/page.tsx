@@ -1,4 +1,5 @@
 import { createFoodAction, removeFoodAction } from "@/app/actions";
+import { FormSubmitButton } from "@/app/_components/form-submit-button";
 import { listFoods } from "@/lib/food-repository";
 import type { FoodItem } from "@/types/food";
 
@@ -106,12 +107,11 @@ export default async function Home() {
 
                       <form action={removeFoodAction}>
                         <input type="hidden" name="id" value={food.id} />
-                        <button
-                          type="submit"
+                        <FormSubmitButton
+                          idleLabel="삭제"
+                          pendingLabel="삭제 중"
                           className="rounded-lg border border-zinc-300 bg-white px-2.5 py-1 text-xs text-zinc-700 transition hover:bg-zinc-100"
-                        >
-                          삭제
-                        </button>
+                        />
                       </form>
                     </div>
                   </li>
@@ -148,12 +148,11 @@ export default async function Home() {
               />
             </label>
 
-            <button
-              type="submit"
+            <FormSubmitButton
+              idleLabel="등록하기"
+              pendingLabel="등록 중"
               className="mt-1 h-11 rounded-xl bg-emerald-600 text-sm font-semibold text-white transition hover:bg-emerald-700"
-            >
-              등록하기
-            </button>
+            />
           </form>
         </details>
       </main>
