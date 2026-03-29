@@ -50,6 +50,7 @@ export async function createFoodAction(formData: FormData): Promise<void> {
   });
 
   revalidatePath("/");
+  revalidatePath("/calendar");
 }
 
 export async function removeFoodAction(formData: FormData): Promise<void> {
@@ -62,4 +63,5 @@ export async function removeFoodAction(formData: FormData): Promise<void> {
 
   await removeFood(id);
   revalidatePath("/");
+  revalidatePath("/calendar");
 }

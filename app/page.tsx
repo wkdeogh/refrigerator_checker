@@ -1,4 +1,5 @@
 import { createFoodAction, removeFoodAction } from "@/app/actions";
+import { MainTabs } from "@/app/_components/main-tabs";
 import { listFoods } from "@/lib/food-repository";
 import type { FoodItem } from "@/types/food";
 
@@ -65,39 +66,11 @@ export default async function Home() {
         <section className="rounded-2xl bg-white p-5 shadow-sm">
           <h1 className="text-xl font-bold">우리집 냉장고 소비기한 관리</h1>
           <p className="mt-1 text-sm text-zinc-600">
-            식품을 등록하면 소비기한이 임박한 순서대로 자동 정렬돼요.
+            홈에서는 등록된 식품을 보고, 필요할 때만 등록 폼을 열 수 있어요.
           </p>
-
-          <form action={createFoodAction} className="mt-4 flex flex-col gap-3">
-            <label className="flex flex-col gap-1 text-sm font-medium">
-              식품 이름
-              <input
-                required
-                name="name"
-                maxLength={40}
-                placeholder="예: 우유"
-                className="h-11 rounded-xl border border-zinc-300 px-3 text-base outline-none ring-emerald-500 focus:ring-2"
-              />
-            </label>
-
-            <label className="flex flex-col gap-1 text-sm font-medium">
-              소비기한
-              <input
-                required
-                name="expiresOn"
-                type="date"
-                className="h-11 rounded-xl border border-zinc-300 px-3 text-base outline-none ring-emerald-500 focus:ring-2"
-              />
-            </label>
-
-            <button
-              type="submit"
-              className="mt-1 h-11 rounded-xl bg-emerald-600 text-sm font-semibold text-white transition hover:bg-emerald-700"
-            >
-              등록하기
-            </button>
-          </form>
         </section>
+
+        <MainTabs current="home" />
 
         <section className="rounded-2xl bg-white p-5 shadow-sm">
           <div className="mb-3 flex items-center justify-between">
@@ -147,6 +120,42 @@ export default async function Home() {
             </ul>
           )}
         </section>
+
+        <details className="rounded-2xl bg-white p-5 shadow-sm">
+          <summary className="cursor-pointer list-none rounded-xl bg-emerald-600 px-4 py-3 text-center text-sm font-semibold text-white transition hover:bg-emerald-700">
+            식품 등록하기
+          </summary>
+
+          <form action={createFoodAction} className="mt-4 flex flex-col gap-3">
+            <label className="flex flex-col gap-1 text-sm font-medium">
+              식품 이름
+              <input
+                required
+                name="name"
+                maxLength={40}
+                placeholder="예: 우유"
+                className="h-11 rounded-xl border border-zinc-300 px-3 text-base outline-none ring-emerald-500 focus:ring-2"
+              />
+            </label>
+
+            <label className="flex flex-col gap-1 text-sm font-medium">
+              소비기한
+              <input
+                required
+                name="expiresOn"
+                type="date"
+                className="h-11 rounded-xl border border-zinc-300 px-3 text-base outline-none ring-emerald-500 focus:ring-2"
+              />
+            </label>
+
+            <button
+              type="submit"
+              className="mt-1 h-11 rounded-xl bg-emerald-600 text-sm font-semibold text-white transition hover:bg-emerald-700"
+            >
+              등록하기
+            </button>
+          </form>
+        </details>
       </main>
     </div>
   );
