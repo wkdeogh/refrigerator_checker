@@ -1,5 +1,4 @@
 import { createFoodAction, removeFoodAction } from "@/app/actions";
-import { MainTabs } from "@/app/_components/main-tabs";
 import { listFoods } from "@/lib/food-repository";
 import type { FoodItem } from "@/types/food";
 
@@ -61,45 +60,46 @@ export default async function Home() {
   const foods = await listFoods();
 
   return (
-    <div className="min-h-screen bg-zinc-100 px-4 py-6 text-zinc-900">
-      <main className="mx-auto flex w-full max-w-xl flex-col gap-5">
-        <section className="rounded-2xl bg-white p-5 shadow-sm">
-          <h1 className="text-xl font-bold">우리집 냉장고 소비기한 관리</h1>
+    <div className="min-h-screen px-4 py-5 text-zinc-900">
+      <main className="mx-auto flex w-full max-w-md flex-col gap-4">
+        <section className="rounded-3xl bg-white p-5 shadow-sm">
+          <h1 className="text-xl font-bold tracking-tight">우리집 냉장고</h1>
           <p className="mt-1 text-sm text-zinc-600">
-            홈에서는 등록된 식품을 보고, 필요할 때만 등록 폼을 열 수 있어요.
+            소비기한이 가까운 순서대로 확인하고 필요할 때만 빠르게 등록하세요.
           </p>
+          <p className="mt-3 text-xs font-medium text-zinc-500">총 {foods.length}개 보관 중</p>
         </section>
 
-        <MainTabs current="home" />
-
-        <section className="rounded-2xl bg-white p-5 shadow-sm">
+        <section className="rounded-3xl bg-white p-5 shadow-sm">
           <div className="mb-3 flex items-center justify-between">
             <h2 className="text-lg font-semibold">등록된 식품</h2>
-            <span className="text-sm text-zinc-500">총 {foods.length}개</span>
+            <span className="rounded-full bg-zinc-100 px-2 py-1 text-xs font-semibold text-zinc-600">
+              임박순
+            </span>
           </div>
 
           {foods.length === 0 ? (
-            <p className="rounded-xl bg-zinc-50 p-4 text-sm text-zinc-600">
+            <p className="rounded-2xl bg-zinc-50 p-4 text-sm text-zinc-600">
               아직 등록된 식품이 없어요.
             </p>
           ) : (
-            <ul className="flex flex-col gap-2">
+            <ul className="flex flex-col gap-2.5">
               {foods.map((food) => {
                 const status = getStatusLabel(food);
 
                 return (
                   <li
                     key={food.id}
-                    className="flex items-center justify-between gap-2 rounded-xl border border-zinc-200 p-3"
+                    className="flex items-center justify-between gap-2 rounded-2xl border border-zinc-200 bg-zinc-50 p-3"
                   >
                     <div className="min-w-0">
-                      <p className="truncate font-medium">{food.name}</p>
-                      <p className="text-sm text-zinc-600">{food.expires_on}</p>
+                      <p className="truncate text-[15px] font-semibold">{food.name}</p>
+                      <p className="text-xs text-zinc-500">소비기한 {food.expires_on}</p>
                     </div>
 
                     <div className="flex shrink-0 items-center gap-2">
                       <span
-                        className={`rounded-full px-2 py-1 text-xs font-semibold ${status.tone}`}
+                        className={`rounded-full px-2.5 py-1 text-xs font-semibold ${status.tone}`}
                       >
                         {status.label}
                       </span>
@@ -108,7 +108,7 @@ export default async function Home() {
                         <input type="hidden" name="id" value={food.id} />
                         <button
                           type="submit"
-                          className="rounded-lg border border-zinc-300 px-2 py-1 text-xs text-zinc-700 hover:bg-zinc-100"
+                          className="rounded-lg border border-zinc-300 bg-white px-2.5 py-1 text-xs text-zinc-700 transition hover:bg-zinc-100"
                         >
                           삭제
                         </button>
@@ -121,8 +121,8 @@ export default async function Home() {
           )}
         </section>
 
-        <details className="rounded-2xl bg-white p-5 shadow-sm">
-          <summary className="cursor-pointer list-none rounded-xl bg-emerald-600 px-4 py-3 text-center text-sm font-semibold text-white transition hover:bg-emerald-700">
+        <details className="rounded-3xl bg-white p-5 shadow-sm">
+          <summary className="cursor-pointer list-none rounded-2xl bg-emerald-600 px-4 py-3 text-center text-sm font-semibold text-white transition hover:bg-emerald-700 active:scale-[0.99]">
             식품 등록하기
           </summary>
 
