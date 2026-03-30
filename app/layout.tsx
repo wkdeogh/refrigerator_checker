@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "우리집 냉장고 소비기한",
+  title: "대호상희 냉장고 관리실",
   description: "식품 소비기한을 등록하고 임박 순으로 관리하는 앱",
 };
 

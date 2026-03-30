@@ -86,9 +86,6 @@ export default async function CalendarPage() {
       <main className="mx-auto flex w-full max-w-md flex-col gap-4">
         <section className="rounded-3xl bg-white p-5 shadow-sm">
           <h1 className="text-xl font-bold tracking-tight">소비기한 달력</h1>
-          <p className="mt-1 text-sm text-zinc-600">
-            등록된 식품의 소비기한을 월별 달력에서 확인할 수 있어요.
-          </p>
           <p className="mt-3 text-xs font-medium text-zinc-500">총 {foods.length}개 식품</p>
         </section>
 
